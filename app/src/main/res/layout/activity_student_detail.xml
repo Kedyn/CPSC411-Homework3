@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/first_name_val"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="@string/first_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/last_name_val"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="@string/last_name"/>
+
+            <TextView
+                android:id="@+id/s_cwid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/cwid_val"
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="@string/last_name"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/first_name_val"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"/>
+
+            <EditText
+                android:id="@+id/last_name_val"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"/>
+
+            <EditText
+                android:id="@+id/cwid_val"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAutofill="no"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_course"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:background="@color/black">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="1dp"
+            android:labelFor="@id/course_val"
+            android:text="@string/course"
+            android:textAlignment="center"
+            android:background="@color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="1dp"
+            android:labelFor="@id/grade_val"
+            android:gravity="center_vertical"
+            android:text="@string/grade"
+            android:textAlignment="center"
+            android:background="@color/white"/>
+
+    </GridLayout>
+
+    <ListView
+        android:id="@+id/courses_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

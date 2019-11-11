@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Homework Two</string>
+    <string name="add_student">Add Student</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+    <string name="cwid">CWID:</string>
+    <string name="add_course">Add Course</string>
+    <string name="course">Course ID</string>
+    <string name="grade">Grade</string>
+</resources>
