@@ -1,6 +1,7 @@
 package com.example.homeworktwo.adapter;
 
 import android.content.Context;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,31 +10,13 @@ import android.widget.EditText;
 
 import com.example.homeworktwo.R;
 import com.example.homeworktwo.model.Course;
+import com.example.homeworktwo.utils.PositionAwareTextWatcher;
 
 import java.util.ArrayList;
 
 public class CourseAdapter extends ArrayAdapter<Course> {
-    private ArrayList<Course> c_courses;
-
     public CourseAdapter(Context context, ArrayList<Course> courses) {
         super(context, 0, courses);
-
-        c_courses = courses;
-    }
-
-    @Override
-    public int getCount() {
-        return c_courses.size();
-    }
-
-    @Override
-    public Course getItem(int i) {
-        return c_courses.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
     }
 
     @Override
@@ -48,13 +31,47 @@ public class CourseAdapter extends ArrayAdapter<Course> {
             row_view = view;
         }
 
-        Course course = c_courses.get(i);
+        Course course = getItem(i);
 
         EditText course_text = row_view.findViewById(R.id.course_val);
         course_text.setText(course.getID());
 
+        course_text.addTextChangedListener(new PositionAwareTextWatcher(i) {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                getItem(getPosition()).setID(editable.toString());
+            }
+        });
+
         EditText grade_text = row_view.findViewById(R.id.grade_val);
         grade_text.setText(course.getGrade());
+
+        grade_text.addTextChangedListener(new PositionAwareTextWatcher(i) {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                getItem(getPosition()).setGrade(editable.toString());
+            }
+        });
 
         return row_view;
     }

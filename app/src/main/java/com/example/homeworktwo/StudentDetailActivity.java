@@ -40,6 +40,8 @@ public class StudentDetailActivity extends AppCompatActivity {
 
         int index = getIntent().getIntExtra("StudentIndex", 0);
 
+        Button add_course_view = findViewById(R.id.add_course);
+
         if (!s_new) {
             s_student = StudentDB.getInstance().getStudents().get(index);
 
@@ -54,6 +56,7 @@ public class StudentDetailActivity extends AppCompatActivity {
             first_name_view.setEnabled(false);
             last_name_view.setEnabled(false);
             cwid_view.setEnabled(false);
+            add_course_view.setEnabled(false);
         }
         else {
             s_student = new Student("", "", 0);
@@ -66,14 +69,10 @@ public class StudentDetailActivity extends AppCompatActivity {
 
         course_list_view.setAdapter(s_course_list_view_adapter);
 
-        Button add_course = findViewById(R.id.add_course);
-
-        add_course.setOnClickListener(new View.OnClickListener() {
+        add_course_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Course> courses = s_student.getCourses();
-
-                courses.add(new Course("",""));
+                s_student.addCourse(new Course("","", s_student.getCWID()));
 
                 s_course_list_view_adapter.notifyDataSetChanged();
             }
@@ -101,10 +100,12 @@ public class StudentDetailActivity extends AppCompatActivity {
             EditText first_name_view = findViewById(R.id.first_name_val);
             EditText last_name_view = findViewById(R.id.last_name_val);
             EditText cwid_view = findViewById(R.id.cwid_val);
+            Button add_course_view = findViewById(R.id.add_course);
 
             first_name_view.setEnabled(true);
             last_name_view.setEnabled(true);
             cwid_view.setEnabled(true);
+            add_course_view.setEnabled(true);
 
             s_menu.findItem(R.id.action_edit).setVisible(false);
             s_menu.findItem(R.id.action_done).setVisible(true);
@@ -128,10 +129,11 @@ public class StudentDetailActivity extends AppCompatActivity {
             s_menu.findItem(R.id.action_done).setVisible(false);
 
             if (s_new && !s_added && cwid_view.getText().length() > 0) {
-                ArrayList<Student> students = StudentDB.getInstance().getStudents();
-                students.add(s_student);
+                s_student.insert(StudentDB.getInstance().getDB());
 
                 s_added = true;
+            } else if (cwid_view.getText().length() > 0) {
+                s_student.update(StudentDB.getInstance().getDB());
             }
         }
 

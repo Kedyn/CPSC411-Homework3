@@ -1,5 +1,6 @@
 package com.example.homeworktwo.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import com.example.homeworktwo.model.Student;
 import com.example.homeworktwo.model.StudentDB;
 
 public class StudentListViewAdapter extends BaseAdapter {
-
     @Override
     public int getCount() {
         return StudentDB.getInstance().getStudents().size();

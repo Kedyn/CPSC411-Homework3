@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.homeworktwo.adapter.StudentListViewAdapter;
+import com.example.homeworktwo.model.StudentDB;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        StudentDB.getInstance().setContext(this);
+        StudentDB.getInstance().retrieveStudentObjects();
 
         m_student_list_view = findViewById(R.id.student_list_view);
         m_student_list_view_adapter = new StudentListViewAdapter();
